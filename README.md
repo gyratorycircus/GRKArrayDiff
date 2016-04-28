@@ -23,16 +23,16 @@ To use, simply import `GRKArrayDiff.h`:
 
 Then alloc and init a new instance, passing in the previous array, the new array, and two
 blocks. The `identityBlock` is responsible for uniquely identifying the given object while
-the `modifiedBlock` is responsible for reporting if the given object is to be considered
-as modified.
+the `modifiedBlock` is responsible for reporting if the given `currentObj` object is to be
+considered as modified.
 
 	GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
 		return [obj identifier];
-	} modifiedBlock:^BOOL(id obj) {
-		return [[obj identifier] isEqualToString:@"five"] ||
-		[[obj identifier] isEqualToString:@"three"] ||
-		[[obj identifier] isEqualToString:@"zero"] ||
-		[[obj identifier] isEqualToString:@"one"];
+	} modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
+		return [[currentObj identifier] isEqualToString:@"five"] ||
+		[[currentObj identifier] isEqualToString:@"three"] ||
+		[[currentObj identifier] isEqualToString:@"zero"] ||
+		[[currentObj identifier] isEqualToString:@"one"];
 	}];
 
 Once created, the instance's four properties (`deletions`, `insertions`, `moves`, and
@@ -56,8 +56,8 @@ Typical iOS table view update usage would look something like this:
             identifier = [myObj uuid];
         }
         return identifier;
-    } modifiedBlock:^BOOL(id obj) {
-        BOOL modified = obj != nil && [modificationSet containsObject:obj];
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
+        BOOL modified = currentObj != nil && [modificationSet containsObject:currentObj];
         return modified;
     }];
     
@@ -80,7 +80,6 @@ A professional iOS engineer by day, my name is Levi Brown. Authoring a blog
 [grokin.gs](http://grokin.gs), I am reachable via:
 
 Twitter [@levigroker](https://twitter.com/levigroker)  
-App.net [@levigroker](https://alpha.app.net/levigroker)  
 Email [levigroker@gmail.com](mailto:levigroker@gmail.com)  
 
 Your constructive comments and feedback are always welcome.
