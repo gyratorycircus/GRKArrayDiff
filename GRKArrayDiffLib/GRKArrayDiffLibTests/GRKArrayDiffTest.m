@@ -32,7 +32,7 @@
     NSArray *currentArray = nil;
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
 
@@ -53,7 +53,7 @@
     NSArray *currentArray = nil;
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -74,7 +74,7 @@
     NSArray *currentArray = @[];
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -95,7 +95,7 @@
     NSArray *currentArray = @[];
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -116,7 +116,7 @@
     NSArray *currentArray = @[@"one"];
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -137,7 +137,7 @@
     NSArray *currentArray = nil;
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -163,7 +163,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -190,7 +190,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -217,7 +217,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -244,7 +244,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -271,8 +271,8 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
-        return [[obj description] isEqualToString:@"one"];
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
+        return [[currentObj description] isEqualToString:@"one"];
     }];
     
     
@@ -301,11 +301,11 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
-        return [[obj description] isEqualToString:@"one"] ||
-        [[obj description] isEqualToString:@"five"] ||
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
+        return [[currentObj description] isEqualToString:@"one"] ||
+        [[currentObj description] isEqualToString:@"five"] ||
         //"three" should not be considered as modified since it moved.
-        [[obj description] isEqualToString:@"three"];
+        [[currentObj description] isEqualToString:@"three"];
     }];
     
     
@@ -335,13 +335,13 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
-        return [[obj description] isEqualToString:@"five"] ||
-        [[obj description] isEqualToString:@"three"] ||
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
+        return [[currentObj description] isEqualToString:@"five"] ||
+        [[currentObj description] isEqualToString:@"three"] ||
         //"zero" should not be considered as modified since it was inserted.
-        [[obj description] isEqualToString:@"zero"] ||
+        [[currentObj description] isEqualToString:@"zero"] ||
         //"one" should not be considered as modified since it moved.
-        [[obj description] isEqualToString:@"one"];
+        [[currentObj description] isEqualToString:@"one"];
     }];
     
     
@@ -375,7 +375,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         //Consider everything modified, but we should not receive any modifications since all elements were inserted.
         return YES;
     }];
@@ -411,7 +411,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         //Consider everything modified, but we should not receive any modifications since all elements were deleted.
         return YES;
     }];
@@ -447,7 +447,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return YES;
     }];
     
@@ -474,7 +474,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return [obj description];
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -499,7 +499,7 @@
     NSArray *expectedMoves = nil;
     NSArray *expectedModifications = nil;
     
-    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id obj) {
+    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -526,7 +526,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return nil;
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -551,7 +551,7 @@
     NSArray *expectedMoves = nil;
     NSArray *expectedModifications = nil;
     
-    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id obj) {
+    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -578,7 +578,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return nil;
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
@@ -603,8 +603,8 @@
     NSArray *expectedMoves = nil;
     NSArray *expectedModifications = @[ [[GRKArrayDiffInfo alloc] initWithIdentity:[self hashAsString:@"one"] previousIndex:@(0) currentIndex:@(0)] ];
     
-    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id obj) {
-        return [[obj description] isEqualToString:@"one"];
+    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
+        return [[currentObj description] isEqualToString:@"one"];
     }];
     
     
@@ -631,11 +631,11 @@
     NSArray *expectedModifications = @[ [[GRKArrayDiffInfo alloc] initWithIdentity:[self hashAsString:@"one"] previousIndex:@(0) currentIndex:@(0)],
                                         [[GRKArrayDiffInfo alloc] initWithIdentity:[self hashAsString:@"five"] previousIndex:@(4) currentIndex:@(3)]];
     
-    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id obj) {
-        return [[obj description] isEqualToString:@"one"] ||
-        [[obj description] isEqualToString:@"five"] ||
+    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
+        return [[currentObj description] isEqualToString:@"one"] ||
+        [[currentObj description] isEqualToString:@"five"] ||
         //"three" should not be considered as modified since it moved.
-        [[obj description] isEqualToString:@"three"];
+        [[currentObj description] isEqualToString:@"three"];
     }];
     
     
@@ -663,13 +663,13 @@
     NSArray *expectedModifications = @[ [[GRKArrayDiffInfo alloc] initWithIdentity:[self hashAsString:@"five"] previousIndex:@(5) currentIndex:@(5)],
                                         [[GRKArrayDiffInfo alloc] initWithIdentity:[self hashAsString:@"three"] previousIndex:@(3) currentIndex:@(3)]];
     
-    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id obj) {
-        return [[obj description] isEqualToString:@"five"] ||
-        [[obj description] isEqualToString:@"three"] ||
+    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
+        return [[currentObj description] isEqualToString:@"five"] ||
+        [[currentObj description] isEqualToString:@"three"] ||
         //"zero" should not be considered as modified since it was inserted.
-        [[obj description] isEqualToString:@"zero"] ||
+        [[currentObj description] isEqualToString:@"zero"] ||
         //"one" should not be considered as modified since it moved.
-        [[obj description] isEqualToString:@"one"];
+        [[currentObj description] isEqualToString:@"one"];
     }];
     
     
@@ -703,7 +703,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return nil;
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         //Consider everything modified, but we should not receive any modifications since all elements were inserted.
         return YES;
     }];
@@ -737,7 +737,7 @@
     NSArray *expectedMoves = @[];
     NSArray *expectedModifications = @[];
     
-    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id obj) {
+    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         //Consider everything modified, but we should not receive any modifications since all elements were deleted.
         return YES;
     }];
@@ -773,7 +773,7 @@
     
     GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:^NSString *(id obj) {
         return nil;
-    } modifiedBlock:^BOOL(id obj) {
+    } modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return YES;
     }];
     
@@ -798,7 +798,7 @@
     NSArray *expectedMoves = @[];
     NSArray *expectedModifications = @[];
     
-    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id obj) {
+    GRKArrayDiff *diff = [[GRKArrayDiff alloc] initWithPreviousArray:previousArray currentArray:currentArray identityBlock:nil modifiedBlock:^BOOL(id  _Nonnull previousObj, id  _Nonnull currentObj) {
         return NO;
     }];
     
