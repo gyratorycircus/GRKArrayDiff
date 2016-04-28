@@ -20,7 +20,6 @@
 		DBE243B81B45C73800F76DE3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE243B71B45C73800F76DE3 /* UIKit.framework */; };
 		DBE243BC1B45CB7D00F76DE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE243BB1B45CB7D00F76DE3 /* Foundation.framework */; };
 		DBE243C01B45CC5100F76DE3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE243BF1B45CC5100F76DE3 /* UIKit.framework */; };
-		DBE243C11B45CC5100F76DE3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBE243BF1B45CC5100F76DE3 /* UIKit.framework */; };
 		DBE2A3EE1B531AF70055AF5F /* GRKArrayDiff+UITableView.h in Headers */ = {isa = PBXBuildFile; fileRef = DBE2A3EC1B531AF70055AF5F /* GRKArrayDiff+UITableView.h */; };
 		DBE2A3EF1B531AF70055AF5F /* GRKArrayDiff+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2A3ED1B531AF70055AF5F /* GRKArrayDiff+UITableView.m */; };
 		DBE2A3F01B531AF70055AF5F /* GRKArrayDiff+UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE2A3ED1B531AF70055AF5F /* GRKArrayDiff+UITableView.m */; };
@@ -70,7 +69,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBE243B81B45C73800F76DE3 /* UIKit.framework in Frameworks */,
-				DBE243C11B45CC5100F76DE3 /* UIKit.framework in Frameworks */,
 				DB8161BB1B44638100AB36FF /* GRKArrayDiffLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,7 +223,7 @@
 		DB8161A61B44638100AB36FF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Levi Brown";
 				TargetAttributes = {
 					DB8161AE1B44638100AB36FF = {
@@ -327,6 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -405,6 +404,7 @@
 				INFOPLIST_FILE = GRKArrayDiffLib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.levigroker.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -420,6 +420,7 @@
 				INFOPLIST_FILE = GRKArrayDiffLib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.levigroker.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -439,6 +440,7 @@
 				);
 				INFOPLIST_FILE = GRKArrayDiffLibTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.levigroker.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -452,6 +454,7 @@
 				);
 				INFOPLIST_FILE = GRKArrayDiffLibTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.levigroker.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
