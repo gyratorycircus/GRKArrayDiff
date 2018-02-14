@@ -7,9 +7,6 @@ Copyright (c) 2015-2018 Levi Brown <mailto:levigroker@gmail.com> This work is
 licensed under the Creative Commons Attribution 4.0 International License. To
 view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/
 
-These works are based on works originally licensed under the MIT license by Hyper
-Interaktiv AS. Please see the Legacy License below.
-
 The above attribution and this license must accompany any version of the source
 code, binary distributable, or derivatives.
 
