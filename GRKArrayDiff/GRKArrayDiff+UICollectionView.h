@@ -24,12 +24,11 @@
  * Updates a given collection view based on information contained in this GRKArrayDiff.
  *
  * @param collectionView The target collection view to update.
- * @param section        The target section of the table view.
- * @param completion     A completion block which will be called once the table has been updated (and animations, if any, have completed). This can be `nil`.
+ * @param section        The target section of the collection view.
+ * @param completion     A completion block which will be called once the collection view has been updated. This can be `nil`.
  */
 - (void)updateCollectionView:(UICollectionView *)collectionView section:(NSInteger)section completion:(void(^)(void))completion;
 
 #endif
- * @param animation      The animation style to perform when updating the table.
 
 @end
