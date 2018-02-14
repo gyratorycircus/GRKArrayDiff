@@ -63,7 +63,7 @@
     
     NSNumber *index = [self valueForIndexType:type];
     
-    if (index)
+    if (index != nil)
     {
         NSUInteger indicies[] = {section, index.integerValue};
         retVal = [NSIndexPath indexPathWithIndexes:indicies length:2];
