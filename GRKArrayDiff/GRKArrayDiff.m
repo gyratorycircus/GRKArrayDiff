@@ -14,10 +14,10 @@
 
 @interface GRKArrayDiff ()
 
-@property (nonatomic,strong,readwrite) NSSet *deletions;
-@property (nonatomic,strong,readwrite) NSSet *insertions;
-@property (nonatomic,strong,readwrite) NSSet *moves;
-@property (nonatomic,strong,readwrite) NSSet *modifications;
+@property (nonatomic,strong,readwrite) NSSet <GRKArrayDiffInfo *>*deletions;
+@property (nonatomic,strong,readwrite) NSSet <GRKArrayDiffInfo *>*insertions;
+@property (nonatomic,strong,readwrite) NSSet <GRKArrayDiffInfo *>*moves;
+@property (nonatomic,strong,readwrite) NSSet <GRKArrayDiffInfo *>*modifications;
 @property (nonatomic,assign,readwrite) BOOL valid;
 
 @end
@@ -128,7 +128,7 @@
 
 #pragma mark - Implementation
 
-- (NSSet *)diffInfoSetForType:(GRKArrayDiffType)type
+- (nullable NSSet <GRKArrayDiffInfo *>*)diffInfoSetForType:(GRKArrayDiffType)type;
 {
     NSSet *retVal = nil;
     
@@ -153,7 +153,7 @@
     return retVal;
 }
 
-- (NSArray *)indexPathsForDiffType:(GRKArrayDiffType)diffType withSection:(NSInteger)section
+- (nullable NSArray <NSIndexPath *>*)indexPathsForDiffType:(GRKArrayDiffType)diffType withSection:(NSInteger)section
 {
     NSMutableArray *retVal = nil;
     
@@ -205,7 +205,7 @@
 
 #pragma mark - Helpers
 
-- (void)populateIdentityIndex:(NSMutableDictionary **)identityIndex identitySet:(NSMutableOrderedSet **)identitySet forArray:(NSArray *)array withIdentityBlock:(NSString *(^)(id obj))identityBlock
+- (void)populateIdentityIndex:(NSMutableDictionary <NSString *, NSNumber *>**)identityIndex identitySet:(NSMutableOrderedSet <NSString *>**)identitySet forArray:(NSArray *)array withIdentityBlock:(NSString *(^)(id obj))identityBlock
 {
     *identityIndex = [NSMutableDictionary dictionary];
     *identitySet = [NSMutableOrderedSet orderedSetWithCapacity:array.count];
@@ -223,7 +223,7 @@
     }
 }
 
-- (void)increment:(BOOL)increment offsets:(NSMutableDictionary *)offsets forOrderedSet:(NSOrderedSet *)orderedSet fromIndex:(NSUInteger)index
+- (void)increment:(BOOL)increment offsets:(NSMutableDictionary <NSString *, NSNumber *>*)offsets forOrderedSet:(NSOrderedSet <NSString *>*)orderedSet fromIndex:(NSUInteger)index
 {
     NSInteger delta = increment ? 1 : -1;
     
