@@ -38,6 +38,11 @@ typedef NS_ENUM(NSUInteger, GRKArrayDiffType) {
  * A NSSet of `GRKArrayDiffInfo` objects describing the elements whose indicies did not change but whose contents are considered modified.
  */
 @property (nonnull,nonatomic,strong,readonly) NSSet *modifications;
+/**
+ * A boolean indicating whether the models provided result in valid changes.
+ * A false value indicates one or more objects in a model array produced the same result for the identity.
+ */
+@property (nonatomic,assign,readonly) BOOL valid;
 
 /**
  * Create and populate a new instance of a GRKArrayDiff with the given previous and current arrays, and supporting blocks.

@@ -18,6 +18,7 @@
 @property (nonatomic,strong,readwrite) NSSet *insertions;
 @property (nonatomic,strong,readwrite) NSSet *moves;
 @property (nonatomic,strong,readwrite) NSSet *modifications;
+@property (nonatomic,assign,readwrite) BOOL valid;
 
 @end
 
@@ -53,7 +54,8 @@
             //Deletion of an element moved all elements with a larger index down.
             [self increment:NO offsets:offsets forOrderedSet:previousIdentities fromIndex:previousIndex.integerValue + 1];
         }
-        self.deletions = [NSSet setWithSet:deletions];
+        
+        _deletions = [NSSet setWithSet:deletions];
         
         //Insertions are those which are in the current set but were not in the previous set
         NSMutableSet *insertions = [NSMutableSet set];
@@ -69,7 +71,8 @@
             //Insertion of an element moved all elements with a larger index up.
             [self increment:YES offsets:offsets forOrderedSet:currentIdentities fromIndex:currentIndex.integerValue + 1];
         }
-        self.insertions = [NSSet setWithSet:insertions];
+        
+        _insertions = [NSSet setWithSet:insertions];
         
         //Moves are those which exist in the previous set, still exist in the current set,
         //and have a changed index not as a result of deletion(s) or insertion(s).
@@ -109,8 +112,15 @@
                 }
             }
         }
-        self.moves = [NSSet setWithSet:moves];
-        self.modifications = [NSSet setWithSet:modifications];
+        
+        _moves = [NSSet setWithSet:moves];
+        _modifications = [NSSet setWithSet:modifications];
+        
+        // Verify that the updates to be performed will be valid with the data model.
+        const BOOL previousIdentitiesValid = previousIdentities.count == previousArray.count;
+        const BOOL currentIdentitiesValid = currentIdentities.count == currentArray.count;
+        const BOOL updatesValid = previousArray.count + insertions.count + -deletions.count == currentArray.count;
+        _valid = previousIdentitiesValid && currentIdentitiesValid && updatesValid;
     }
     
     return self;
